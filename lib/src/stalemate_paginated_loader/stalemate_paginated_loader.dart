@@ -160,7 +160,7 @@ class StaleMatePaginatedLoader<ListItemType,
       _logger.i('Could not fetch more. Already fetching data');
     } else if (fetchMoreResult.isFailure) {
       final error = fetchMoreResult.requireError;
-      _logger.e('Fetch more operation failed', error);
+      _logger.e('Fetch more operation failed', error: error);
       // Tell the base loader to handle the error appropritaly
       _onRemoteDataError(error, StackTrace.current);
 

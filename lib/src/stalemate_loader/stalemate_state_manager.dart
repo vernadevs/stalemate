@@ -55,7 +55,8 @@ class StaleMateStateManager {
         try {
           listener(newState, prevState);
         } catch (e, stackTrace) {
-          _logger.e('Error while calling state listener', e, stackTrace);
+          _logger.e('Error while calling state listener',
+              error: e, stackTrace: stackTrace);
         }
       }
 

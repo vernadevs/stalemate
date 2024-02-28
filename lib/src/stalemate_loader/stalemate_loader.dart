@@ -168,7 +168,7 @@ class StaleMateLoader<T, HandlerType extends StaleMateHandler<T>> {
   /// Can be useful if there are any errors that are external to the loader, but should be shown
   /// to the user through reacting to the data stream.
   _addError(Object error) {
-    _logger.d('Added error to stream', error, StackTrace.current);
+    _logger.d('Added error to stream', error: error, stackTrace: StackTrace.current);
     _subject.addError(error);
   }
 
@@ -206,7 +206,7 @@ class StaleMateLoader<T, HandlerType extends StaleMateHandler<T>> {
       if (error is NotSupportedException) {
         _logger.d('Local storage not supported, skipping storing local data');
       } else {
-        _logger.e('Failed to store local data', error, stackTrace);
+        _logger.e('Failed to store local data', error: error, stackTrace: stackTrace);
       }
     }
   }
@@ -264,7 +264,7 @@ class StaleMateLoader<T, HandlerType extends StaleMateHandler<T>> {
           StaleMateStatus.idle,
         );
       } else {
-        _logger.e('Failed to load remote data', error, stackTrace);
+        _logger.e('Failed to load remote data', error: error, stackTrace: stackTrace);
 
         _onRemoteDataError(error, stackTrace);
 
@@ -307,8 +307,8 @@ class StaleMateLoader<T, HandlerType extends StaleMateHandler<T>> {
 
         _logger.e(
           'Failed to load local data',
-          error,
-          stackTrace,
+          error: error,
+          stackTrace: stackTrace,
         );
       }
     }
@@ -343,8 +343,8 @@ class StaleMateLoader<T, HandlerType extends StaleMateHandler<T>> {
       else if (refreshResult.isFailure) {
         _logger.e(
           'Failed to get remote data after initialization',
-          refreshResult.error,
-          StackTrace.current,
+          error: refreshResult.error,
+          stackTrace: StackTrace.current,
         );
 
         _stateManager.setRemoteState(
@@ -393,8 +393,8 @@ class StaleMateLoader<T, HandlerType extends StaleMateHandler<T>> {
 
       _logger.e(
         'Failed to refresh data',
-        refreshResult.error,
-        StackTrace.current,
+        error: refreshResult.error,
+        stackTrace: StackTrace.current,
       );
     } else {
       _stateManager.setRemoteState(
@@ -419,7 +419,7 @@ class StaleMateLoader<T, HandlerType extends StaleMateHandler<T>> {
       if (error is NotSupportedException) {
         _logger.i('Local storage not supported, skipping local data reset');
       } else {
-        _logger.e('Failed to reset local data', error, stackTrace);
+        _logger.e('Failed to reset local data', error: error, stackTrace: stackTrace);
       }
     }
     _subject.add(_handler.emptyValue);
